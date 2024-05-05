@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using SpendSmart.Data;
 using SpendSmart.Models;
 
 namespace SpendSmart.Controllers;
@@ -8,14 +9,60 @@ public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
 
-    public HomeController(ILogger<HomeController> logger)
+    private readonly SpendSmartDbContext _context;
+
+    public HomeController(ILogger<HomeController> logger, SpendSmartDbContext context)
     {
         _logger = logger;
+        _context = context;
     }
 
     public IActionResult Index()
     {
         return View();
+    }
+
+    public IActionResult Expenses()
+    {
+        var allExpenses = _context.Expenses.ToList();
+
+        var totalExpenses = allExpenses.Sum(x => x.Value);
+
+        ViewBag.Expenses = totalExpenses;
+        
+        return View(allExpenses);
+    }
+
+    public IActionResult CreateEditExpense(int? id)
+    {
+        if (id == null) return View();
+
+        var expenseInDb = _context.Expenses.SingleOrDefault(expense => expense.Id == id);
+        return View(expenseInDb);
+    }
+
+    public IActionResult CreateEditExpenseForm(Expense model)
+    {
+        if (model.Id == 0)
+        {
+            _context.Expenses.Add(model);
+        }
+        else
+        {
+            _context.Expenses.Update(model);
+        }
+
+        _context.SaveChanges();
+
+        return RedirectToAction("Expenses");
+    }
+
+    public IActionResult DeleteExpense(int id)
+    {
+        var expenseInDb = _context.Expenses.SingleOrDefault(expense => expense.Id == id);
+        _context.Expenses.Remove(expenseInDb);
+        _context.SaveChanges();
+        return RedirectToAction("Expenses");
     }
 
     public IActionResult Privacy()
