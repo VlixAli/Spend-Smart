@@ -14,6 +14,7 @@ It's my very first Asp.net project but not the last!</li>
 - [Requirements](#requirements).
 - [Installation Steps](#installation).
 - [Acknowledgements](#acknowledgements).
+- [Screenshots](#screens).
 
 
 ## ⛏️ Built Using <a name = "built"></a>
@@ -58,3 +59,16 @@ dotnet run
 This simple project was created following this nice tutorial 
 [ASP.NET 8 MVC Tutorial for Beginners - C# web development made easy](https://www.youtube.com/watch?v=xuFdrXqpPB0)
  on youtube
+
+## 📷 Screenshots <a name = "screens"></a>
+
+---
+
+### Home page
+<img src="https://github.com/VlixAli/Spend-Smart/blob/main/screenshots/HomePage.PNG?raw=true"/>
+
+### Expenses page
+<img src="https://github.com/VlixAli/Spend-Smart/blob/main/screenshots/ExpensesPage.PNG?raw=true"/>
+
+### Create or Edit an Expense page
+<img src="https://github.com/VlixAli/Spend-Smart/blob/main/screenshots/createOrEditPage.PNG?raw=true"/>
