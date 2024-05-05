@@ -45,6 +45,7 @@ First clone this repository, install the dependencies and then run the project u
 
 ````
 git clone https://github.com/VlixAli/Spend-Smart.git
+cd SpendSmart
 dotnet restore
 dotnet run
 ````
